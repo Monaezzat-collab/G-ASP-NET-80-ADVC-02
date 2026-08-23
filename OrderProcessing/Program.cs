@@ -39,44 +39,96 @@
             #endregion
 
             #region Task 01 : Smart Product Search
-            
-            List<Product> electronics=Product.SearchProducts(catalog, item=>item.Category=="Electronics");
-            List<Product> cheap = Product.SearchProducts(catalog, item => item.Price < 50);
-            List<Product> inStock = Product.SearchProducts(catalog, item => item.Stock > 0);
-            List<Product> cheapClothing = Product.SearchProducts(catalog, item => item.Category == "Clothing" && item.Price < 100);
 
-            //1. All Electronics products 
+            //List<Product> electronics = Product.SearchProducts(catalog, item => item.Category == "Electronics");
+            //List<Product> cheap = Product.SearchProducts(catalog, item => item.Price < 50);
+            //List<Product> inStock = Product.SearchProducts(catalog, item => item.Stock > 0);
+            //List<Product> cheapClothing = Product.SearchProducts(catalog, item => item.Category == "Clothing" && item.Price < 100);
 
-            Console.WriteLine("----- Electronics  ----- ");
-            foreach(Product product in electronics)
-            {
-                Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
-            }
-            //2. Products cheaper than $50 
+            ////1. All Electronics products 
 
-            Console.WriteLine("----- Under $50 -----");
-            foreach (Product product in cheap)
-            {
-                Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
+            //Console.WriteLine("----- Electronics  ----- ");
+            //foreach (Product product in electronics)
+            //{
+            //    Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
+            //}
+            ////2. Products cheaper than $50 
 
-            }
+            //Console.WriteLine("----- Under $50 -----");
+            //foreach (Product product in cheap)
+            //{
+            //    Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
 
-            //3. Products that are in stock (Stock > 0) 
-            Console.WriteLine("----- In Stock -----");
-            foreach( Product product in inStock)
-            {
-                Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
+            //}
 
-            }
+            ////3. Products that are in stock (Stock > 0) 
+            //Console.WriteLine("----- In Stock -----");
+            //foreach (Product product in inStock)
+            //{
+            //    Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
 
-            //4. Clothing products under $100
-            Console.WriteLine("------- Clothing Under $100 -------");
-            foreach(Product product in cheapClothing)
-            {
-                Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
+            //}
+
+            ////4. Clothing products under $100
+            //Console.WriteLine("------- Clothing Under $100 -------");
+            //foreach (Product product in cheapClothing)
+            //{
+            //    Console.WriteLine($"{product.Name} - ${product.Price} -[Stock: {product.Stock}]");
+
+            //}
+            #endregion
+
+            #region Task 02 : Custom Report Generator
+
+            #region 2.1  Print Reports 
+            ////Scenario 1  Short Report: Print each product as Name - $Price 
+            //Console.WriteLine("--- Short Report ---");
+            //Product.PrintReports(catalog, product => Console.WriteLine($"{product.Name} - ${product.Price}"));
+
+            ////Scenario 2  Detailed Report: Print each product as [Category] Name | Price: $X | Stock: Y 
+            //Console.WriteLine("\n--- Detailed Report ---");
+            //Product.PrintReports(catalog, product => Console.WriteLine($"[{product.Category}]  {product.Name} | ${product.Price} | Stock: {product.Stock}"));
+
+            #endregion
+
+            #region 2.2 Transform Products 
+            ////Scenario 3 Summary List: Transform each product into a string like "Laptop ($1200)". Print all results. 
+            //Console.WriteLine("--- Summary List ---");
+            //List<string> summaryList = Product.TransformProducts(catalog, product => $"{product.Name} (${product.Price})");
+
+            //foreach (string summary in summaryList)
+            //{
+            //    Console.WriteLine(summary);
+            //}
+
+            ////Scenario 4 - Price Label
+
+            //Console.WriteLine("\n--- Price Label ---");
+            //List<string> priceLabels = Product.TransformProducts(catalog, product =>
+            //$"{product.Name}: {(product.Price > 100 ? "Expensive!" : "Affordabel!")}");
+            //foreach (string priceLabel in priceLabels)
+            //{
+            //    Console.WriteLine(priceLabel);
+            //}
+            #endregion
+
+            #region 2.3 Filter Products
+            //Scenario 5  Low-Stock Alert: Find products with Stock < 20 and print an alert for each in the format: [LOW STOCK] Name: only X left!
+
+            Console.WriteLine("\n --- Low-Stock Alert ---");
+            List<Product> LowStock = Product.FilterProducts(catalog, product => product.Stock < 20);
+
+            foreach (Product product in LowStock) {
+
+            Console.WriteLine($"[LOW STOCK] {product.Name}: only {product.Stock} left!");
 
             }
             #endregion
+
+            #endregion
+
+
         }
     }
-}
+    }
+
